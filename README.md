@@ -1,33 +1,33 @@
-# d16
+
+---
+
+##  sample.py,d,app.py
+
+```python
+def greet(name):
+    return "Hello " + name
 
 
-Experiment 16: Creating Docker Images using Dockerfile
-Tasks: Write Dockerfile, build and run image.
-Outcome: Application containerization.
+from sample import greet
 
-
-1. Simple Python App (app.py)
 print("Hello from Docker Container!")
+print(greet("Docker"))
 
 
 # Use official Python image
 FROM python:3.10
 
-# Set working directory inside container
+# Set working directory
 WORKDIR /app
 
-# Copy the Python file into the container
-COPY app.py .
+# Copy all files into container
+COPY . .
 
-# Run the Python script
+# Run the application
 CMD ["python", "app.py"]
 
 
-def greet(name):
-    return "Hello " + name
-
-print(greet("Docker"))
-
-
 docker build -t my-python-app .
+
+
 docker run my-python-app
